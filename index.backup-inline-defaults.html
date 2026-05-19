@@ -591,7 +591,8 @@
           </p>
 
           <p class="hint">
-            Default images and CTA URLs are hardcoded inline in DEFAULT_CONFIG. Admin changes are saved in this browser until reset.
+            Static hosting note: this panel saves changes in the current browser using localStorage.
+            To publish global changes for every visitor, update DEFAULT_CONFIG inside index.html and push again.
           </p>
         </div>
       </div>
@@ -604,43 +605,43 @@
     const ADMIN_PASSCODE = "landingchat2026";
 
     const DEFAULT_CONFIG = {
-  "mode": "random",
-  "fixedIndex": 0,
-  "items": [
-    {
-      "label": "Image Set 1",
-      "desktopImage": "https://llportafolio.com/wp-content/uploads/2026/05/1-h.jpg",
-      "mobileImage": "https://llportafolio.com/wp-content/uploads/2026/05/1-v.jpg",
-      "url": "https://example.com/chat-1"
-    },
-    {
-      "label": "Image Set 2",
-      "desktopImage": "https://llportafolio.com/wp-content/uploads/2026/05/2-h.jpg",
-      "mobileImage": "https://llportafolio.com/wp-content/uploads/2026/05/2-v.jpg",
-      "url": "https://example.com/chat-2"
-    },
-    {
-      "label": "Image Set 3",
-      "desktopImage": "https://llportafolio.com/wp-content/uploads/2026/05/3-h.jpg",
-      "mobileImage": "https://llportafolio.com/wp-content/uploads/2026/05/3-v.jpg",
-      "url": "https://example.com/chat-3"
-    },
-    {
-      "label": "Image Set 4",
-      "desktopImage": "https://llportafolio.com/wp-content/uploads/2026/05/4-h.jpg",
-      "mobileImage": "https://llportafolio.com/wp-content/uploads/2026/05/4-v.jpg",
-      "url": "https://example.com/chat-4"
-    },
-    {
-      "label": "Image Set 5",
-      "desktopImage": "https://llportafolio.com/wp-content/uploads/2026/05/5-h.jpg",
-      "mobileImage": "https://llportafolio.com/wp-content/uploads/2026/05/5-v.jpg",
-      "url": "https://example.com/chat-5"
-    }
-  ]
-};
+      mode: "random",
+      fixedIndex: 0,
+      items: [
+        {
+          label: "Image Set 1",
+          desktopImage: "https://llportafolio.com/wp-content/uploads/2026/05/1-h.jpg",
+          mobileImage: "https://llportafolio.com/wp-content/uploads/2026/05/1-v.jpg",
+          url: "https://example.com/chat-1"
+        },
+        {
+          label: "Image Set 2",
+          desktopImage: "https://llportafolio.com/wp-content/uploads/2026/05/2-h.jpg",
+          mobileImage: "https://llportafolio.com/wp-content/uploads/2026/05/2-v.jpg",
+          url: "https://example.com/chat-2"
+        },
+        {
+          label: "Image Set 3",
+          desktopImage: "https://llportafolio.com/wp-content/uploads/2026/05/3-h.jpg",
+          mobileImage: "https://llportafolio.com/wp-content/uploads/2026/05/3-v.jpg",
+          url: "https://example.com/chat-3"
+        },
+        {
+          label: "Image Set 4",
+          desktopImage: "https://llportafolio.com/wp-content/uploads/2026/05/4-h.jpg",
+          mobileImage: "https://llportafolio.com/wp-content/uploads/2026/05/4-v.jpg",
+          url: "https://example.com/chat-4"
+        },
+        {
+          label: "Image Set 5",
+          desktopImage: "https://llportafolio.com/wp-content/uploads/2026/05/5-h.jpg",
+          mobileImage: "https://llportafolio.com/wp-content/uploads/2026/05/5-v.jpg",
+          url: "https://example.com/chat-5"
+        }
+      ]
+    };
 
-    const STORAGE_KEY = "landingchat_inline_defaults_v3";
+    const STORAGE_KEY = "landingchat_dynamic_config_v2";
 
     const background = document.getElementById("background");
     const ctaButton = document.getElementById("ctaButton");
@@ -956,4 +957,3 @@
   </script>
 </body>
 </html>
-
