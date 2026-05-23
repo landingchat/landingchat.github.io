@@ -490,18 +490,17 @@
         font-size: 0.78rem;
       }
     }
-      /* LANDINGCHAT_HITS_COUNTER_CSS_START */
-    #landingchat-hits-counter {
+      /* LANDINGCHAT_MAPMYVISITORS_CSS_START */
+    #landingchat-traffic-widget {
       position: fixed !important;
       right: 14px !important;
       bottom: 14px !important;
       z-index: 2147483000 !important;
-      display: flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-      padding: 10px 12px !important;
-      border-radius: 999px !important;
-      background: rgba(0, 0, 0, 0.62) !important;
+      width: 220px !important;
+      min-height: 160px !important;
+      padding: 10px !important;
+      border-radius: 18px !important;
+      background: rgba(0, 0, 0, 0.58) !important;
       border: 1px solid rgba(255, 255, 255, 0.22) !important;
       box-shadow:
         0 18px 50px rgba(0, 0, 0, 0.55),
@@ -509,28 +508,67 @@
       backdrop-filter: blur(14px) !important;
       -webkit-backdrop-filter: blur(14px) !important;
       pointer-events: auto !important;
+      overflow: visible !important;
     }
 
-    #landingchat-hits-counter img {
+    #landingchat-traffic-widget::before {
+      content: "Live Visitors";
+      display: block;
+      margin-bottom: 8px;
+      color: #ffffff;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.92;
+    }
+
+    #landingchat-traffic-widget * {
+      max-width: 100% !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+    }
+
+    #landingchat-traffic-widget iframe,
+    #landingchat-traffic-widget canvas,
+    #landingchat-traffic-widget img,
+    #landingchat-traffic-widget object,
+    #landingchat-traffic-widget embed {
       display: block !important;
-      height: 24px !important;
-      width: auto !important;
-      max-width: 220px !important;
+      max-width: 100% !important;
+      margin: 0 auto !important;
+      position: relative !important;
+      z-index: 2147483001 !important;
+    }
+
+    .landingchat-widget-fallback {
+      color: rgba(255,255,255,0.72);
+      font-size: 12px;
+      line-height: 1.35;
+      font-family: Arial, Helvetica, sans-serif;
     }
 
     @media (max-width: 820px) {
-      #landingchat-hits-counter {
+      #landingchat-traffic-widget {
         right: 10px !important;
         bottom: 10px !important;
-        padding: 8px 10px !important;
+        width: 170px !important;
+        min-height: 120px !important;
+        padding: 8px !important;
+        border-radius: 15px !important;
       }
 
-      #landingchat-hits-counter img {
-        height: 22px !important;
-        max-width: 190px !important;
+      #landingchat-traffic-widget::before {
+        font-size: 10px;
+        margin-bottom: 6px;
+      }
+
+      .landingchat-widget-fallback {
+        font-size: 10px;
       }
     }
-    /* LANDINGCHAT_HITS_COUNTER_CSS_END */
+    /* LANDINGCHAT_MAPMYVISITORS_CSS_END */
   </style>
 </head>
 
@@ -995,14 +1033,36 @@
 
     renderLanding(true);
   </script>
-  <!-- LANDINGCHAT_HITS_COUNTER_START -->
-  <a id="landingchat-hits-counter" href="https://hits.seeyoufarm.com" target="_blank" rel="noopener noreferrer" aria-label="LandingChat visit counter">
-    <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=&count_bg=%23FF2EA6&title_bg=%23050008&icon=&icon_color=%23FFFFFF&title=VISITS&edge_flat=false" alt="LandingChat visitor counter" loading="lazy" referrerpolicy="no-referrer-when-downgrade" />
-  </a>
-  <!-- LANDINGCHAT_HITS_COUNTER_END -->
+  <!-- LANDINGCHAT_MAPMYVISITORS_START -->
+  <div id="landingchat-traffic-widget">
+    <div class="landingchat-widget-fallback" id="landingchat-widget-fallback">
+      Loading visitor map...
+    </div>
+
+    <script type="text/javascript" id="mmvst_globe" src="//mapmyvisitors.com/globe.js?d=B5odEG67Bx_KPwqr8vVMWo7o-noD-hxrpzQWXEb4SRU"></script>
+
+    <script>
+      window.addEventListener("load", function () {
+        setTimeout(function () {
+          var widget = document.getElementById("landingchat-traffic-widget");
+          var fallback = document.getElementById("landingchat-widget-fallback");
+
+          if (!widget || !fallback) return;
+
+          var hasExternalContent = widget.querySelector("iframe, canvas, img, object, embed");
+
+          if (hasExternalContent) {
+            fallback.style.display = "none";
+          } else {
+            fallback.innerHTML = "Visitor map script loaded. If no globe appears, check adblock/privacy blocking.";
+          }
+        }, 2500);
+      });
+    </script>
+  </div>
+  <!-- LANDINGCHAT_MAPMYVISITORS_END -->
 </body>
 </html>
-
 
 
 
